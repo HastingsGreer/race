@@ -109,14 +109,7 @@ def plot_results(models,
     plt.savefig(filename)
     plt.show()
 
-#racing_data
 
-data = pickle.load(open("some_frames", "rb"))
-
-x_train = data.astype("float32") / 255
-x_test = x_train[:2000]
-x_train = x_train[2000:]
-image_size = x_train.shape[1]
 
 # network parameters
 input_shape = (96, 96, 3)
@@ -186,6 +179,15 @@ outputs = decoder(encoder(inputs)[2])
 vae = Model(inputs, outputs, name='vae')
 
 if __name__ == '__main__':
+
+    #racing_data
+
+    data = pickle.load(open("some_frames", "rb"))
+
+    x_train = data.astype("float32") / 255
+    x_test = x_train[:2000]
+    x_train = x_train[2000:]
+    image_size = x_train.shape[1]
     parser = argparse.ArgumentParser()
     help_ = "Load h5 model trained weights"
     parser.add_argument("-w", "--weights", help=help_)
